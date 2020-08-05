@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <color name="txt_color_dark">#4a4a4a</color>
+    <color name="txt_color_light">#5a5a5a</color>
+    <color name="back__circle_shape_color">#EFEFEF</color>
+
+    <color name="color_grey">#bbbbbb</color>
+    <color name="page_color_grey">#F3F3F3</color>
+    <color name="mdtp_accent_color">#FF0084</color>
+    <color name="mdtp_accent_color_dark">#FF0084</color>
+    <color name="grey_light">#F3F3F3</color>
+    <color name="colorPrimary">#3145c2</color>
+    <color name="colorPrimaryDark">#3145c2</color>
+    <color name="colorAccent">#3145c2</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorYellow">#FFE601</color>
+    <color name="grayBackCard">#F2F2F2</color>
+    <color name="grayTextColor">#9E9E9E</color>
+    <color name="blackTextColor">#5A5A5A</color>
+    <color name="color_red">#EC6152</color>
+    <color name="color_green">#36D4A1</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#3E3E3E</color>
+
+
+</resources>

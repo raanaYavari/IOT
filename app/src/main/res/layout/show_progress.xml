@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent">
+
+    <FrameLayout
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_centerInParent="true"
+        >
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/color_grey" />
+    </FrameLayout>
+
+</RelativeLayout>

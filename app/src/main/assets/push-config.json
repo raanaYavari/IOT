@@ -1,0 +1,8 @@
+{
+  "pushServerURL": "http://9db207f17699.ngrok.io/",
+  "android": {
+    "senderID": "750752599992",
+    "variantID": "01b3f6c2-ce92-47df-8cd0-3c40f6bbecdc",
+    "variantSecret": "8d5adacf-bc90-43f7-be05-3b575f2d1c46"
+  }
+}
