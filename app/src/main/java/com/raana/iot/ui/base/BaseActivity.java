@@ -4,10 +4,11 @@ package com.raana.iot.ui.base;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-
+import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +17,8 @@ import androidx.core.content.ContextCompat;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.raana.iot.R;
+import com.raana.iot.util.SetLanguage;
 import com.raana.iot.util.ShowLoading;
-
-import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
         AlertDialog progressDialog;
@@ -27,6 +27,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.attachBaseContext(newBase);
     }
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SetLanguage.updateLanguage(getContext(), "fa");
+    }
 
     @Override
     public Context getContext() {
@@ -39,9 +45,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             new StyleableToast
                     .Builder(this)
                     .text(message)
-                    .textColor(ContextCompat.getColor(this,R.color.color_red))
+                    .textColor(ContextCompat.getColor(this,R.color.colorRed))
                     .backgroundColor(ContextCompat.getColor(this,R.color.colorWhite))
-                    .stroke(1, ContextCompat.getColor(this,R.color.color_red))
+                    .stroke(1, ContextCompat.getColor(this,R.color.colorRed))
                     .show();
         }
     }

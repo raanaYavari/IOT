@@ -12,12 +12,11 @@
         >
 
         <com.github.ybq.android.spinkit.SpinKitView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/spin_kit"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="center"
-            app:SpinKit_Color="@color/color_grey" />
+            app:SpinKit_Color="@color/colorGray" />
     </FrameLayout>
 
 </RelativeLayout>

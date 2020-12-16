@@ -2,10 +2,13 @@ package com.raana.iot.data;
 
 import android.content.Context;
 
-import com.raana.iot.data.model.Detail;
-import com.raana.iot.data.model.TempHum;
+import com.raana.iot.data.model.BusStation;
+import com.raana.iot.data.model.DistanceMatrix;
+import com.raana.iot.data.model.Driver;
 import com.raana.iot.data.network.ApiBaseCreator;
 import com.raana.iot.data.network.ApiHeader;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,10 +20,11 @@ public class AppDataManager implements AppDataManagerHelper {
     private static AppDataManager appDataManager;
     private final ApiHeader apiHeader;
     static Context myContext;
+
     public static AppDataManager getInstance(Context context) {
         if (appDataManager == null) {
             appDataManager = new AppDataManager(ApiBaseCreator.getApiHeader(""));
-            myContext=context;
+            myContext = context;
         }
         return appDataManager;
     }
@@ -36,65 +40,58 @@ public class AppDataManager implements AppDataManagerHelper {
     //<<<<<<<<< API CALLS ARE HERE >>>>>>>>
 
     @Override
-    public Call<TempHum> getSensorsData(final Callback<TempHum> callback){
-        Call<TempHum> call=ApiBaseCreator.getApiHeader("").getSensorsData("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJURVNUMiIsInVzciI6Ik1hbGloZWg3NyJ9.iEGEE4rrbx_o7qrK-VWMEcpj8KoOfrc3FWaCWVvNVWo");
-        call.enqueue(new Callback<TempHum>() {
+    public Call<List<BusStation>> getBusStations(final Callback<List<BusStation>> callback) {
+        Call<List<BusStation>> call = ApiBaseCreator.getApiHeader("").getBusStations();
+        call.enqueue(new Callback<List<BusStation>>() {
             @Override
-            public void onResponse(Call<TempHum> call, Response<TempHum> response) {
-                callback.onResponse(call,response);
+            public void onResponse(Call<List<BusStation>> call, Response<List<BusStation>> response) {
+                callback.onResponse(call, response);
             }
 
             @Override
-            public void onFailure(Call<TempHum> call, Throwable t) {
-                callback.onFailure(call,t);
+            public void onFailure(Call<List<BusStation>> call, Throwable t) {
+                callback.onFailure(call, t);
             }
         });
+
         return call;
     }
 
 
     @Override
-    public Call<Detail> getDetail(final Callback<Detail> callback){
-        Call<Detail> call=ApiBaseCreator.getApiHeader("").getDetail("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJURVNUMiIsInVzciI6Ik1hbGloZWg3NyJ9.iEGEE4rrbx_o7qrK-VWMEcpj8KoOfrc3FWaCWVvNVWo");
-        call.enqueue(new Callback<Detail>() {
+    public Call<List<Driver>> getDrivers(String busStationId, final Callback<List<Driver>> callback) {
+        Call<List<Driver>> call = ApiBaseCreator.getApiHeader("").getDrivers(busStationId);
+        call.enqueue(new Callback<List<Driver>>() {
             @Override
-            public void onResponse(Call<Detail> call, Response<Detail> response) {
-                callback.onResponse(call,response);
+            public void onResponse(Call<List<Driver>> call, Response<List<Driver>> response) {
+                callback.onResponse(call, response);
             }
 
             @Override
-            public void onFailure(Call<Detail> call, Throwable t) {
-                callback.onFailure(call,t);
+            public void onFailure(Call<List<Driver>> call, Throwable t) {
+                callback.onFailure(call, t);
             }
         });
+
         return call;
     }
 
+    @Override
+    public Call<DistanceMatrix> distanceApi(String origin, String destination, final Callback<DistanceMatrix> callback) {
+        Call<DistanceMatrix> call = ApiBaseCreator.getNeshanHeader().distanceApi("service.oC6YmyHz4UNtCIzC70bBiFfUNlp8I56LEIiFLiPO",origin,destination);
+        call.enqueue(new Callback<DistanceMatrix>() {
+            @Override
+            public void onResponse(Call<DistanceMatrix> call, Response<DistanceMatrix> response) {
+                callback.onResponse(call, response);
+            }
 
+            @Override
+            public void onFailure(Call<DistanceMatrix> call, Throwable t) {
+                callback.onFailure(call, t);
+            }
+        });
 
-//    @Override
-//    public Call<LoginModelResponse> doLoginApiCall(String userName, String password, final Callback<LoginModelResponse> callback) {
-//        Call<LoginModelResponse> call = ApiBaseCreator.getApiHeader("").doLoginCall("password", userName, password, "asdf");
-//        call.enqueue(new Callback<LoginModelResponse>() {
-//            @Override
-//            public void onResponse(Call<LoginModelResponse> call, Response<LoginModelResponse> response) {
-//                if (response.isSuccessful()) {
-//                    appPreferences.saveAccessToken(response.body().getAccessToken());
-//                    appPreferences.saveRefreshToken(response.body().getRefreshToken());
-//                    setLogin(true);
-//                }
-//                callback.onResponse(call, response);
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginModelResponse> call, Throwable t) {
-//                callback.onFailure(call, t);
-//
-//            }
-//
-//        });
-//        return call;
-//    }
-//
+        return call;
+    }
+
 }

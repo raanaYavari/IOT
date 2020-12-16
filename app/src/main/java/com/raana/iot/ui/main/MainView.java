@@ -1,15 +1,14 @@
 package com.raana.iot.ui.main;
 
 
-import com.raana.iot.data.model.Location;
+import com.raana.iot.data.model.BusStation;
+import com.raana.iot.data.model.Driver;
 import com.raana.iot.ui.base.BaseView;
 
+import java.util.List;
+
 public interface MainView extends BaseView {
+    void initWorkPlaceItem(List<BusStation> myBusStationList);
 
-
-    void setData(int count, int range);
-
-    void setHumadityData(int count, int range);
-
-    void setOnMap(Location location);
+    void initDrivers(List<Driver> drivers);
 }

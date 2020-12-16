@@ -1,19 +1,26 @@
 package com.raana.iot.data.network;
 
-import com.raana.iot.data.model.Detail;
-import com.raana.iot.data.model.TempHum;
+import com.raana.iot.data.model.BusStation;
+import com.raana.iot.data.model.DistanceMatrix;
+import com.raana.iot.data.model.Driver;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Query;
 
 public interface ApiHeader {
 
-    @GET("v2/users/Maliheh77/devices/TEST_IOT/TempHum")
-    Call<TempHum> getSensorsData(@Header("Authorization") String token);
+    @GET("busstations")
+    Call<List<BusStation>> getBusStations();
 
-     @GET("https://api.thinger.io/v1/users/Maliheh77/devices/TEST_IOT")
-     Call<Detail> getDetail(@Header("Authorization") String token);
+    @GET("getDrivers")
+    Call<List<Driver>> getDrivers(@Query("id") String id);
+
+    @GET("distance-matrix")
+    Call<DistanceMatrix> distanceApi(@Header("Api-Key") String apiKey, @Query("origins") String origin, @Query("destinations") String destination);
 
 
 }

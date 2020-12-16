@@ -6,6 +6,7 @@ buildscript {
         maven {
             url 'https://maven.fabric.io/public'
         }
+        maven { url "https://dl.bintray.com/neshan/neshan-android-sdk" }
         maven{
             url "https://dl.bintray.com/infideap2/Drawer-Behavior"
         }

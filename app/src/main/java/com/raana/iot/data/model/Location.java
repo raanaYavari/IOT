@@ -3,27 +3,29 @@ package com.raana.iot.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Location {
-    @SerializedName("lat")
+    @SerializedName("type")
     @Expose
-    private double lat;
-    @SerializedName("lon")
+    private String type;
+    @SerializedName("coordinates")
     @Expose
-    private double lon;
+    private List<Double> coordinates;
 
-    public double getLat() {
-        return lat;
+    public String getType() {
+        return type;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public double getLon() {
-        return lon;
+    public List<Double> getCoordinates() {
+        return coordinates;
     }
 
-    public void setLon(double lon) {
-        this.lon = lon;
+    public void setCoordinates(List<Double> coordinates) {
+        this.coordinates = coordinates;
     }
 }

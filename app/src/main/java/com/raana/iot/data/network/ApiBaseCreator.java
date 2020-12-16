@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiBaseCreator {
     public static ApiHeader getApiHeader(String subdomain) {
 
-        String REST_API_BASE_URL = "https://api.thinger.io/";
+        String REST_API_BASE_URL = "http://192.168.1.101:8000/api/";
 
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -49,6 +49,40 @@ public class ApiBaseCreator {
 
     }
 
+    public static ApiHeader getNeshanHeader() {
+
+        String REST_API_BASE_URL = "https://api.neshan.org/v1/";
+
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setLenient();
+//        gsonBuilder.registerTypeAdapter(Date.class, new UtcDateTypeAdapter());
+        Gson gson = gsonBuilder.create();
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(false)
+                .addInterceptor(logging)
+                .build();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(REST_API_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        return retrofit.create(ApiHeader.class);
+
+    }
 
     public static String bodyToString(final RequestBody request) {
         try {
@@ -63,5 +97,7 @@ public class ApiBaseCreator {
             return "did not work";
         }
     }
+
+
 }
 
